@@ -888,32 +888,81 @@ h1, h2, h3 {
 
 .registration-qr h3 {
     font-size: var(--text-lg);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: var(--gold);
 }
 
-.qr-code {
-    width: 200px;
-    height: 200px;
+.registration-links {
+    display: grid;
+    gap: 0.65rem;
     margin: 0 auto;
-    padding: 0.75rem;
-    background: var(--white);
-    border: 2px solid var(--gray-30);
-    border-radius: 4px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 320px;
 }
 
-.qr-code:hover {
-    box-shadow: var(--shadow-gold);
+.registration-links a {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--gold), var(--saffron));
+    border: 1px solid transparent;
+    color: var(--black);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
-.qr-code img,
-.qr-code svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.registration-links a:hover,
+.registration-links a:focus-visible {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 14px 26px rgba(0,0,0,0.32);
+    filter: saturate(1.05);
+    outline: none;
+}
+
+.portfolio.matrix {
+    margin-top: 1.4rem;
     display: block;
+    margin-inline: auto;
+    max-width: 540px;
+    padding: 0.4rem 0;
 }
+
+.portfolio.matrix h3 {
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+}
+
+.portfolio.matrix a {
+    display: block;
+    width: 100%;
+    color: var(--white);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.portfolio.matrix a:hover,
+.portfolio.matrix a:focus-visible {
+    background: rgba(201, 162, 39, 0.18);
+    border-color: var(--gold);
+    color: var(--black);
+    transform: translateY(-1px);
+}
+
 
 /* ==========================================================================
    Contact Section
@@ -1035,6 +1084,28 @@ footer.footer,
     background: var(--dark-elevated);
     text-align: center;
     position: relative;
+}
+.developer-credit {
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 0.65rem 0;
+    text-align: center;
+    color: var(--gray-80);
+}
+.developer-credit p {
+    margin: 0;
+    font-size: 0.85rem;
+}
+.developer-credit a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+}
+.developer-credit a:hover,
+.developer-credit a:focus-visible {
+    color: var(--saffron);
+    text-decoration: underline;
 }
 
 .footer::before {
