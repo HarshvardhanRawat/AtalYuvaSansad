@@ -42,12 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(badge);
     });
     
-    // Parallax effect for hero section
+    // Subtle parallax for hero (premium, not overwhelming)
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const hero = document.querySelector('.hero');
         if (hero) {
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            hero.style.transform = `translateY(${scrolled * 0.15}px)`;
         }
     });
     
@@ -103,15 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(column);
     });
     
-    // Add pulse animation to registration QR code
+    // QR code hover handled by CSS; optional gentle entrance
     const qrCode = document.querySelector('.qr-code');
     if (qrCode) {
-        setInterval(() => {
-            qrCode.style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                qrCode.style.transform = 'scale(1)';
-            }, 300);
-        }, 3000);
+        qrCode.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
     }
     
     // Add counter animation for dates
@@ -166,22 +161,15 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
     
-    // Add scroll progress indicator
-    const progressBar = document.createElement('div');
-    progressBar.style.position = 'fixed';
-    progressBar.style.top = '0';
-    progressBar.style.left = '0';
-    progressBar.style.height = '3px';
-    progressBar.style.background = 'linear-gradient(to right, var(--orange), var(--yellow), var(--green))';
-    progressBar.style.zIndex = '9999';
-    progressBar.style.transition = 'width 0.1s ease';
-    document.body.appendChild(progressBar);
-    
-    window.addEventListener('scroll', () => {
-        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (window.pageYOffset / windowHeight) * 100;
-        progressBar.style.width = scrolled + '%';
-    });
+    // Scroll progress indicator (use existing #scroll-progress element)
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = windowHeight > 0 ? (window.pageYOffset / windowHeight) * 100 : 0;
+            progressBar.style.width = scrolled + '%';
+        });
+    }
     
     // Add dynamic text glow on committee details
     const detailHeaders = document.querySelectorAll('.detail-header h2');
@@ -202,10 +190,15 @@ document.addEventListener('DOMContentLoaded', () => {
         'color: #4CAF50; font-size: 14px;');
 });
 
-// Preload critical content
+// Premium: reveal content after load (prevents FOUC, adds polish)
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
+
+// Fallback: if load already fired (e.g. cached), add loaded
+if (document.readyState === 'complete') {
+    document.body.classList.add('loaded');
+}
 
 // Add performance optimization for scroll
 let ticking = false;
